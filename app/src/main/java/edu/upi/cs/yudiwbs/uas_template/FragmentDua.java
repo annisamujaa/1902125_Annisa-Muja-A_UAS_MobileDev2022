@@ -31,6 +31,9 @@ public class FragmentDua extends Fragment implements SensorEventListener {
     private FragmentDuaBinding binding;
     private SensorManager senSensorManager;
     private Sensor senAccelerometer;
+    private long lastUpdate = 0;
+    private float last_x, last_y, last_z;
+    private static final int SHAKE_THRESHOLD = 600;
 
     ArrayList<Hasil> alHasil = new ArrayList<>();
     AdapterHasil adapter;
@@ -51,7 +54,7 @@ public class FragmentDua extends Fragment implements SensorEventListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+//        senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         senSensorManager.registerListener(this, senAccelerometer , SensorManager.SENSOR_DELAY_NORMAL);
     }
@@ -92,6 +95,9 @@ public class FragmentDua extends Fragment implements SensorEventListener {
     }
 
     public void onSensorChanged(SensorEvent event) {
+//        Sensor mySensor = sensorEvent.sensor;
+//        if (mySensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+//        }
     }
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
